@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Bank Investment Analysis</title>
+
+    <style>
+        /* Universal Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            background-image: url('https://imgs.search.brave.com/8bv6jrOEw8unEnyEWJUoKjR8Um27HskKeLFPx_438xU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ5/MjE4OTY3Ny9waG90/by9iYW5rLXN5bWJv/bC13aXRoLXdpdGgt/Y29pbnMtc3RhY2st/Y29uY2VwdHMtb2Yt/dGhlLWJhbmtpbmct/c3lzdGVtLXJpc2lu/Zy1pbnRlcmVzdC1y/YXRlcy53ZWJwP2E9/MSZiPTEmcz02MTJ4/NjEyJnc9MCZrPTIw/JmM9RzUzZkMwc0tJ/YllzNkR0NXNoTFRi/WlNnQ3Q4VWZoVlZr/WXJBdkVTaHNGUT0');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 10px;
+        }
+
+        header nav ul li {
+            list-style: none;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Main Section */
+        main {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* About Content */
+        #about-content {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        #about-content h2 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        #about-content p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        #about-content:hover {
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>About Us</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/projects">Projects by Members</a></li>
+                <li><a href="/prediction">Prediction</a></li>
+                <li><button onclick="window.location.href='/logout'" class="logout-btn">Log Out</button></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="about-content">
+        <h2>Who We Are</h2>
+        <p>We are a team dedicated to leveraging predictive analytics in banking and investment sectors. We believe in the power of data to drive smarter decisions and offer better insights.</p>
+        <p>Our goal is to make financial predictions more accessible to both investors and banks, ensuring more informed decision-making processes and better investment strategies.</p>
+    </section>
+</main>
+
+</body>
+</html>

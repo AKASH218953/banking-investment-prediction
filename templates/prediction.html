@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction - Bank Investment Analysis</title>
+
+    <style>
+        /* Universal Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            background-image: url('https://imgs.search.brave.com/8bv6jrOEw8unEnyEWJUoKjR8Um27HskKeLFPx_438xU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ5/MjE4OTY3Ny9waG90/by9iYW5rLXN5bWJv/bC13aXRoLXdpdGgt/Y29pbnMtc3RhY2st/Y29uY2VwdHMtb2Yt/dGhlLWJhbmtpbmct/c3lzdGVtLXJpc2lu/Zy1pbnRlcmVzdC1y/YXRlcy53ZWJwP2E9/MSZiPTEmcz02MTJ4/NjEyJnc9MCZrPTIw/JmM9RzUzZkMwc0tJ/YllzNkR0NXNoTFRi/WlNnQ3Q4VWZoVlZr/WXJBdkVTaHNGUT0');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 10px;
+        }
+
+        header nav ul li {
+            list-style: none;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Main Section */
+        main {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section Styling */
+        section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 30px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
+        }
+
+        section h2 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        section p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background-color: #2e3b4e;
+            color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        code {
+            display: block;
+            padding: 10px;
+        }
+
+        /* Syntax Highlighting */
+        .language-python {
+            background-color: #2e3b4e;
+            color: #f5f5f5;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        }
+
+        .language-python span {
+            color: #ff79c6;
+        }
+
+        /* Image Styling */
+        img {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            section {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            pre {
+                font-size: 0.9rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Prediction</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/projects">Projects by Members</a></li>
+                <li><a href="/prediction">Prediction</a></li>
+                <li><button onclick="window.location.href='/logout'" class="logout-btn">Log Out</button></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Section 1: Overview -->
+    <section>
+        <h2>1. About Dataset</h2>
+        <p>There has been a revenue decline in the Portuguese Bank and they would like to know what actions to take. After investigation, they found that the root cause was that their customers are not investing enough for long term deposits. So the bank would like to identify existing customers that have a higher chance to subscribe for a long term deposit and focus marketing efforts on such customers.</p>
+    </section>
+
+    <!-- Section 2: Dataset -->
+    <section>
+        <h2>2. Dataset Preparation</h2>
+        <p></p>
+        <pre><code class="language-python">
+#import pandas as pd
+import numpy as np
+
+# Load data
+df = pd.read_csv("/content/new_train.csv")
+
+df.head()
+        </code></pre>
+    </section>
+    <!-- Section 2: Data Loading and Preprocessing: Handling Missing Values and Duplicates -->
+
+    <section>
+        <h2>2. Data Loading and Preprocessing: Handling Missing Values and Duplicates</h2>
+        <p></p>
+        <pre><code class="language-python">
+            import pandas as pd
+            # Load data from a CSV file
+            df = pd.read_csv("/content/new_train.csv")
+            
+            # Display basic information about the dataset
+            print("Original Data Info:")
+            print(df.info())
+            
+            # Handling Missing Values
+            df.dropna(inplace=True)
+            
+            # Removing Duplicates
+            df.drop_duplicates(inplace=True)
+            
+            print("\nCleaned Data Info:")
+            print(df.info())
+            
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>3. Dataset Preparation: Column Renaming, Feature Alignment, and Splitting for EDA</h2>
+        <p></p>
+        <pre><code class="language-python">
+            # Renaming the columns
+data = data.rename(columns={"default": "default_credit",
+                            "housing":"housing_loan",
+                            "loan":"personal_loan",
+                            "poutcome": "prev_attempt"})
+columns = data.columns
+test_data = test_data.rename(columns={"default": "default_credit",
+                            "housing":"housing_loan",
+                            "loan":"personal_loan",
+                            "poutcome": "prev_attempt"})
+# Adding the missing columns in the test dataset
+test_data['pdays']=0
+test_data['previous'] = 0
+test_data['y']=0
+test_data = test_data[columns]
+test_data = test_data.drop(['y'], axis=1)
+
+# Splitting the dataset as per the categorical and numerical features For EDA
+cat_data = data.select_dtypes(include=['object'])
+num_data = data.select_dtypes(include=['int64'])
+num_data["pdays"].replace({999: 0}, inplace=True)
+print(columns)
+            
+            
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>4. Data Visualization Functions for Univariate and Multivariate Analysis</h2>
+        <p></p>
+        <pre><code class="language-python">
+            def univariate_cat_plots(df):
+    for feature in df.columns:
+        plt.figure(figsize=(12,6))
+        sns.set_theme(context='notebook',style='darkgrid',palette='deep',color_codes=True)
+        sns.countplot(x=feature,data=df,palette="dark",orient='v')
+        plt.xlabel(feature)
+        plt.title("Univariate analysis of categorical feature")
+        plt.show()
+
+def multivariate_cat_plots(df):
+    for feature in df.columns:
+        plt.figure(figsize=(12,6))
+        sns.set_theme(context='notebook',style='whitegrid',palette='deep',color_codes=True)
+        sns.countplot(x=feature,data=df,palette="dark",hue = 'y',orient='v')
+        plt.xlabel(feature)
+        plt.title("Biivariate analysis of categorical feature")
+        plt.show()
+
+def num_plots(df):
+    for feature in df.columns:
+        plt.figure(figsize=(12,6))
+        sns.kdeplot(data=df, x =feature)
+        plt.xlabel(feature)
+        plt.title("Univariate Analysis of Numerical Features")
+        plt.show()
+
+
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>5. Encoding Categorical Features and Merging Dataframes</h2>
+        <p></p>
+        <pre><code class="language-python">
+            le = LabelEncoder()
+cat_data= cat_data[cat_data.columns].apply(lambda col: le.fit_transform(col))
+
+# Merging both dataframes
+bank_data = pd.concat([cat_data,num_data],axis =1)
+bank_data = bank_data[columns]
+bank_data
+
+
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>5. Advanced Visualizations: Facet Grids and Box Plots </h2>
+        <p></p>
+        <pre><code class="language-python">
+            def grid_plots(bank_data):
+            for feature in ['housing_loan','personal_loan','default_credit','marital']:
+                sns.color_palette('tab10')
+                grid = sns.FacetGrid(bank_data, col=feature, row='y')
+                grid.map_dataframe(sns.histplot,x='age',binwidth=2, binrange=(0, 60))
+                plt.show()
+        grid_plots(bank_data)
+        
+        
+        sns.boxplot(data=bank_data,x='day_of_week', y='age',hue='y')
+        plt.show()
+        sns.boxplot(data=bank_data,x='month', y='age',hue='y')
+        plt.show()
+        
+
+
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>6. Automated Machine Learning Workflow with PyCaret </h2>
+        <p></p>
+        <pre><code class="language-python">
+            env = setup(data= bank_data, target='y',train_size=0.99,normalize=True, normalize_method='robust', session_id=40).            
+            model = compare_models(fold =10)               
+            best_model = create_model(model)                    
+            tuned_model = tune_model(best_model)                
+            plot_model(tuned_model)                  
+            plot_model(tuned_model,plot='error')            
+            evaluate_model(tuned_model)
+
+
+        </code></pre>
+    </section>
+    
+</main>
+
+</body>
+</html>

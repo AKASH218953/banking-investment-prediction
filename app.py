@@ -153,5 +153,6 @@ def predict():
 
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # This creates the 'users.db' file and the 'User' table
-    app.run(debug=True)  # Run the application in debug mode
+        db.create_all()  # This creates the 'users.db' file and the 'User' tabl
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+ # Run the application in debug mode

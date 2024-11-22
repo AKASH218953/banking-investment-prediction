@@ -19,10 +19,10 @@
             color: #333;
             line-height: 1.6;
             font-size: 16px;
-            background-image: url('https://imgs.search.brave.com/8bv6jrOEw8unEnyEWJUoKjR8Um27HskKeLFPx_438xU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ5/MjE4OTY3Ny9waG90/by9iYW5rLXN5bWJv/bC13aXRoLXdpdGgt/Y29pbnMtc3RhY2st/Y29uY2VwdHMtb2Yt/dGhlLWJhbmtpbmct/c3lzdGVtLXJpc2lu/Zy1pbnRlcmVzdC1y/YXRlcy53ZWJwP2E9/MSZiPTEmcz02MTJ4/NjEyJnc9MCZrPTIw/JmM9RzUzZkMwc0tJ/YllzNkR0NXNoTFRi/WlNnQ3Q4VWZoVlZr/WXJBdkVTaHNGUT0');
+            background-image: url('https://imgs.search.brave.com/ZKhluV6Y7GZTxFI6R_MF5ssYd7htWoB-lJA42ANvIIQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by93/b29kZW4tdGFibGUt/cHJvZHVjdC1iYWNr/Z3JvdW5kXzUzODc2/LTg5NDQ4LmpwZz9z/ZW10PWFpc19oeWJy/aWQ');
             background-size: cover;
             background-position: center;
-            background-attachment: scroll;
+            background-attachment: fixed;
             background-repeat: no-repeat;
             min-height: 100vh;
             padding: 0;
@@ -178,7 +178,6 @@
                 font-size: 0.9rem;
             }
         }
-
     </style>
 </head>
 <body>
@@ -189,7 +188,7 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/about">About Us</a></li>
+                <li><a href="/about">About Project</a></li>
                 <li><a href="/projects">Projects by Members</a></li>
                 <li><a href="/prediction">Prediction</a></li>
                 <li><button onclick="window.location.href='/logout'" class="logout-btn">Log Out</button></li>
@@ -202,15 +201,14 @@
     <!-- Section 1: Overview -->
     <section>
         <h2>1. About Dataset</h2>
-        <p>There has been a revenue decline in the Portuguese Bank and they would like to know what actions to take. After investigation, they found that the root cause was that their customers are not investing enough for long term deposits. So the bank would like to identify existing customers that have a higher chance to subscribe for a long term deposit and focus marketing efforts on such customers.</p>
+        <p>The Portuguese bank is analyzing customer data to boost long-term investments. The goal is to identify customers likely to subscribe to long-term deposits and focus on targeted marketing campaigns.</p>
     </section>
 
     <!-- Section 2: Dataset -->
     <section>
         <h2>2. Dataset Preparation</h2>
-        <p></p>
         <pre><code class="language-python">
-#import pandas as pd
+import pandas as pd
 import numpy as np
 
 # Load data
@@ -219,152 +217,56 @@ df = pd.read_csv("/content/new_train.csv")
 df.head()
         </code></pre>
     </section>
-    <!-- Section 2: Data Loading and Preprocessing: Handling Missing Values and Duplicates -->
 
+    <!-- Section 3: Handling Missing Values -->
     <section>
-        <h2>2. Data Loading and Preprocessing: Handling Missing Values and Duplicates</h2>
-        <p></p>
+        <h2>3. Handling Missing Values and Duplicates</h2>
         <pre><code class="language-python">
-            import pandas as pd
-            # Load data from a CSV file
-            df = pd.read_csv("/content/new_train.csv")
-            
-            # Display basic information about the dataset
-            print("Original Data Info:")
-            print(df.info())
-            
-            # Handling Missing Values
-            df.dropna(inplace=True)
-            
-            # Removing Duplicates
-            df.drop_duplicates(inplace=True)
-            
-            print("\nCleaned Data Info:")
-            print(df.info())
-            
+import pandas as pd
+# Load data from a CSV file
+df = pd.read_csv("/content/new_train.csv")
+
+# Display basic information about the dataset
+print("Original Data Info:")
+print(df.info())
+
+# Handling Missing Values
+df.dropna(inplace=True)
+
+# Removing Duplicates
+df.drop_duplicates(inplace=True)
+
+print("\nCleaned Data Info:")
+print(df.info())
         </code></pre>
     </section>
 
+    <!-- Section 4: Data Visualization -->
     <section>
-        <h2>3. Dataset Preparation: Column Renaming, Feature Alignment, and Splitting for EDA</h2>
-        <p></p>
+        <h2>4. Data Visualization</h2>
         <pre><code class="language-python">
-            # Renaming the columns
-data = data.rename(columns={"default": "default_credit",
-                            "housing":"housing_loan",
-                            "loan":"personal_loan",
-                            "poutcome": "prev_attempt"})
-columns = data.columns
-test_data = test_data.rename(columns={"default": "default_credit",
-                            "housing":"housing_loan",
-                            "loan":"personal_loan",
-                            "poutcome": "prev_attempt"})
-# Adding the missing columns in the test dataset
-test_data['pdays']=0
-test_data['previous'] = 0
-test_data['y']=0
-test_data = test_data[columns]
-test_data = test_data.drop(['y'], axis=1)
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-# Splitting the dataset as per the categorical and numerical features For EDA
-cat_data = data.select_dtypes(include=['object'])
-num_data = data.select_dtypes(include=['int64'])
-num_data["pdays"].replace({999: 0}, inplace=True)
-print(columns)
-            
-            
+# Example: Univariate Analysis
+sns.countplot(data=df, x='marital', palette='cool')
+plt.show()
         </code></pre>
     </section>
 
+    <!-- Section 5: Machine Learning -->
     <section>
-        <h2>4. Data Visualization Functions for Univariate and Multivariate Analysis</h2>
-        <p></p>
+        <h2>5. Machine Learning Workflow</h2>
         <pre><code class="language-python">
-            def univariate_cat_plots(df):
-    for feature in df.columns:
-        plt.figure(figsize=(12,6))
-        sns.set_theme(context='notebook',style='darkgrid',palette='deep',color_codes=True)
-        sns.countplot(x=feature,data=df,palette="dark",orient='v')
-        plt.xlabel(feature)
-        plt.title("Univariate analysis of categorical feature")
-        plt.show()
+from pycaret.classification import *
 
-def multivariate_cat_plots(df):
-    for feature in df.columns:
-        plt.figure(figsize=(12,6))
-        sns.set_theme(context='notebook',style='whitegrid',palette='deep',color_codes=True)
-        sns.countplot(x=feature,data=df,palette="dark",hue = 'y',orient='v')
-        plt.xlabel(feature)
-        plt.title("Biivariate analysis of categorical feature")
-        plt.show()
+# Setup
+env = setup(data=df, target='y', session_id=42)
 
-def num_plots(df):
-    for feature in df.columns:
-        plt.figure(figsize=(12,6))
-        sns.kdeplot(data=df, x =feature)
-        plt.xlabel(feature)
-        plt.title("Univariate Analysis of Numerical Features")
-        plt.show()
-
-
+# Model Comparison
+best_model = compare_models()
         </code></pre>
     </section>
-
-    <section>
-        <h2>5. Encoding Categorical Features and Merging Dataframes</h2>
-        <p></p>
-        <pre><code class="language-python">
-            le = LabelEncoder()
-cat_data= cat_data[cat_data.columns].apply(lambda col: le.fit_transform(col))
-
-# Merging both dataframes
-bank_data = pd.concat([cat_data,num_data],axis =1)
-bank_data = bank_data[columns]
-bank_data
-
-
-        </code></pre>
-    </section>
-
-    <section>
-        <h2>5. Advanced Visualizations: Facet Grids and Box Plots </h2>
-        <p></p>
-        <pre><code class="language-python">
-            def grid_plots(bank_data):
-            for feature in ['housing_loan','personal_loan','default_credit','marital']:
-                sns.color_palette('tab10')
-                grid = sns.FacetGrid(bank_data, col=feature, row='y')
-                grid.map_dataframe(sns.histplot,x='age',binwidth=2, binrange=(0, 60))
-                plt.show()
-        grid_plots(bank_data)
-        
-        
-        sns.boxplot(data=bank_data,x='day_of_week', y='age',hue='y')
-        plt.show()
-        sns.boxplot(data=bank_data,x='month', y='age',hue='y')
-        plt.show()
-        
-
-
-        </code></pre>
-    </section>
-
-    <section>
-        <h2>6. Automated Machine Learning Workflow with PyCaret </h2>
-        <p></p>
-        <pre><code class="language-python">
-            env = setup(data= bank_data, target='y',train_size=0.99,normalize=True, normalize_method='robust', session_id=40).            
-            model = compare_models(fold =10)               
-            best_model = create_model(model)                    
-            tuned_model = tune_model(best_model)                
-            plot_model(tuned_model)                  
-            plot_model(tuned_model,plot='error')            
-            evaluate_model(tuned_model)
-
-
-        </code></pre>
-    </section>
-    
 </main>
 
 </body>
